@@ -1,19 +1,84 @@
 extends layout
 
 block content
+        
         .span12
           .row
-            div#wordcloud
+            center
+              div#graph
+        
+          script
+            
+            var dg_nodes= !{JSON.stringify(graph_nodes)};
+            var dg_links= !{JSON.stringify(graph_links)};
+            console.log(dg_nodes)
+            console.log(dg_links)
+            
+            var width = 960,
+            height = 500;
+
+            var color = d3.scale.category20();
+
+            var force = d3.layout.force()
+                .charge(-120)
+                .linkDistance(30)
+                .size([width, height]);
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            
+              force
+                  .nodes(dg_nodes)
+                  .links(dg_links)
+                  .start();
+
+              var link = svg.selectAll(".link")
+                  .data(dg_links)
+                  .enter().append("line")
+                  .attr("class", "link")
+                  .style("stroke", "black")
+                  .style("stroke-width", function(d) { 
+                     return 1; });
+                  
+
+              var node = svg.selectAll(".node")
+                  .data(dg_nodes)
+                .enter().append("circle")
+                  .attr("class", "node")
+                  .attr("r", 5)
+                  .style("fill", function(d) { return color(d.group); })
+                  .call(force.drag);
+
+              node.append("title")
+                  .text(function(d) { return d.name; });
+
+              force.on("tick", function() {
+                link.attr("x1", function(d) { return d.source.x; })
+                    .attr("y1", function(d) { return d.source.y; })
+                    .attr("x2", function(d) { return d.target.x; })
+                    .attr("y2", function(d) { return d.target.y; });
+
+                node.attr("cx", function(d) { return d.x; })
+                    .attr("cy", function(d) { return d.y; });
+              });
+
+        .span12
+          .row
+            div#wordcloud.wordcloud
         
           script
             var temp_words = !{JSON.stringify(words)}
             var fill = d3.scale.category20();
-            d3.layout.cloud().size([300, 300])
+            var w= 1000;
+            var h = 500;
+            d3.layout.cloud().size([w,h])
             .words(temp_words.map(function(d) {
                 
                 var frequency = parseInt(d.frequency)
                 console.log(frequency);
-            return {text: d.word, size: frequency * 10};
+            return {text: d.word, size: frequency*4};
             }))
             .padding(5)
             .rotate(function() { return ~~(Math.random() * 2) * 90; })
@@ -23,10 +88,10 @@ block content
             .start();
             function draw(words) {
             d3.select("#wordcloud").append("svg")
-            .attr("width", 300)
-            .attr("height", 300)
+            .attr("width", w)
+            .attr("height", h)
             .append("g")
-            .attr("transform", "translate(150,150)")
+            .attr("transform",  "translate(" + [w >> 1, h >> 1] + ")")
             .selectAll("text")
             .data(words)
             .enter().append("text")
@@ -39,3 +104,4 @@ block content
             })
             .text(function(d) { return d.text; });
             }
+            
