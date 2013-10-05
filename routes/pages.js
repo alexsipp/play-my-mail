@@ -67,7 +67,7 @@ app.post('/process', function (req, res) {
 				app.get('playmy').generate_ds3_graph_data(output, function (err, results) {
 					if (err) console.log(err);
 					console.log(results);
-					output = results;
+					output_graph = results;
 					callback();
 				})
 			},
@@ -85,9 +85,10 @@ app.post('/process', function (req, res) {
 			    title: 'Home',
 			    page_nav: 'home',
 			    words: data.words_list,
+			    artist_list: output.artist_list,
 			    playlist: output.spotify_ids,
-			    graph_nodes: output.nodes,
-			    graph_links: output.links
+			    graph_nodes: output_graph.nodes,
+			    graph_links: output_graph.links
 			});    
 		})
 		

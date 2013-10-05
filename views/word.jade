@@ -22,7 +22,7 @@ block content
                 
                 var frequency = parseInt(d.frequency)
                 console.log(frequency);
-            return {text: d.word, size: frequency*4};
+            return {text: d.word, size: frequency*8};
             }))
             .padding(5)
             .rotate(function() { return ~~(Math.random() * 2) * 90; })
@@ -50,16 +50,17 @@ block content
             }
 
           script
-            var temp_words = !{JSON.stringify(words)}
+            var temp_artists = !{JSON.stringify(artist_list)}
+            console.log(temp_artists)
             var fill = d3.scale.category20();
             var w= 500;
             var h = 500;
             d3.layout.cloud().size([w,h])
-            .words(temp_words.map(function(d) {
+            .words(temp_artists.map(function(d) {
                 
-                var frequency = parseInt(d.frequency)
-                console.log(frequency);
-            return {text: d.word, size: frequency*4};
+                var count = parseInt(d.count)
+                console.log(count);
+            return {text: d.name, size: count*8};
             }))
             .padding(5)
             .rotate(function() { return ~~(Math.random() * 2) * 90; })
@@ -87,7 +88,7 @@ block content
             }
 
         
-        .row(style="background-color: #EEE; padding: 30px; margin-right: -60px;")
+        .row(style="padding: 30px; margin-right: -60px;")
           .span12
             center
               div#graph
@@ -96,10 +97,8 @@ block content
             
             var dg_nodes= !{JSON.stringify(graph_nodes)};
             var dg_links= !{JSON.stringify(graph_links)};
-            console.log(dg_nodes)
-            console.log(dg_links)
-            
-            var width = 1000,
+        
+            var width = 1200,
                 height = 1000;
 
             var color = d3.scale.category20();
