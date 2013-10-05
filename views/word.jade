@@ -3,17 +3,19 @@ extends layout
 block content
         .span12
           .row
-            div#wordcloud
+            div#wordcloud.wordcloud
         
           script
             var temp_words = !{JSON.stringify(words)}
             var fill = d3.scale.category20();
-            d3.layout.cloud().size([300, 300])
+            var w= 1000;
+            var h = 500;
+            d3.layout.cloud().size([w,h])
             .words(temp_words.map(function(d) {
                 
                 var frequency = parseInt(d.frequency)
                 console.log(frequency);
-            return {text: d.word, size: frequency * 10};
+            return {text: d.word, size: frequency*4};
             }))
             .padding(5)
             .rotate(function() { return ~~(Math.random() * 2) * 90; })
@@ -23,10 +25,10 @@ block content
             .start();
             function draw(words) {
             d3.select("#wordcloud").append("svg")
-            .attr("width", 300)
-            .attr("height", 300)
+            .attr("width", w)
+            .attr("height", h)
             .append("g")
-            .attr("transform", "translate(150,150)")
+            .attr("transform",  "translate(" + [w >> 1, h >> 1] + ")")
             .selectAll("text")
             .data(words)
             .enter().append("text")

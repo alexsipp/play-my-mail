@@ -26,6 +26,7 @@
   padding: 7px 9px;
 }
 
-body {
-  padding-top: 60px;
+.wordcloud {
+  padding-top: 150px;
+  text-align: center;
 }
