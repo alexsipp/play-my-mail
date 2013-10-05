@@ -1,7 +1,7 @@
   10 your
    6 the
+   5 to
    5 is
-   4 to
    4 ready
    4 o
    4 fw
@@ -34,6 +34,7 @@
    1 xmas
    1 wind
    1 whisky
+   1 welcome
    1 web
    1 vibration
    1 verification
@@ -89,6 +90,7 @@
    1 les
    1 lenceli
    1 lebanese
+   1 league
    1 karting
    1 ka
    1 jumper
@@ -105,6 +107,7 @@
    1 have
    1 haute
    1 has
+   1 hacker
    1 groove
    1 go
    1 glen

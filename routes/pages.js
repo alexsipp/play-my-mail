@@ -21,6 +21,7 @@ app.post('/process', function (req, res) {
 	var email = req.body.email || null;
 	var password = req.body.password || null;
 	var data = {};
+	var output = {};
 
 	if (email && password) {
 
@@ -57,13 +58,13 @@ app.post('/process', function (req, res) {
 
 				app.get('playmy').get_artists(data.words_list, function (err, results) {
 					if (err) console.log(err);
-					data.artist_list = results;
+					output = results;
 					callback();
 				})
 			}
 
 		}, function (err) {
-			console.log(data);
+			console.log(output);
 		})
 		
 	}
