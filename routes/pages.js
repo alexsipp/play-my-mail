@@ -22,6 +22,7 @@ app.post('/process', function (req, res) {
 	var password = req.body.password || null;
 	var data = {};
 	var output = {};
+	var tracks = [];
 
 	if (email && password) {
 
@@ -59,6 +60,7 @@ app.post('/process', function (req, res) {
 				app.get('playmy').get_artists(data.words_list, function (err, results) {
 					if (err) console.log(err);
 					output = results;
+					tracks = output.tracks;
 					callback();
 				})
 			},
@@ -68,14 +70,22 @@ app.post('/process', function (req, res) {
 					output = results;
 					callback();
 				})
+			},
+			get_spotify_ids: function (callback) {
+				app.get('playmy').get_spotify_ids(tracks, function (err, results) {
+					output.spotify_ids = results; 
+					callback();
+				})
 			}
 
 		}, function (err) {
-			console.log(output);
 			res.render('word', {
 			    title: 'Home',
 			    page_nav: 'home',
-			    words: data.words_list
+			    words: data.words_list,
+			    playlist: output.spotify_ids,
+			    graph_nodes: output.nodes,
+			    graph_links: output.links
 			});    
 		})
 		
