@@ -61,6 +61,13 @@ app.post('/process', function (req, res) {
 					output = results;
 					callback();
 				})
+			},
+			generate_graph: function (callback) {
+				app.get('playmy').generate_ds3_graph_data(output, function (err, results) {
+					if (err) console.log(err);
+					console.log(results);
+					callback();
+				})
 			}
 
 		}, function (err) {
