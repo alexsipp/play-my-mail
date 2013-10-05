@@ -18,7 +18,7 @@
     "underscore": "*",
     "underscore.string": "*",
     "moment": "*",
-    "versionator": "*",
+    "versionator": "*"
   },
   "devDependencies": {
     "stylus": "*",
