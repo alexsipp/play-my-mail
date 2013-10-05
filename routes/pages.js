@@ -66,14 +66,13 @@ app.post('/process', function (req, res) {
 			generate_graph: function (callback) {
 				app.get('playmy').generate_ds3_graph_data(output, function (err, results) {
 					if (err) console.log(err);
-					console.log(results);
 					output_graph = results;
 					callback();
 				})
 			},
 
 			get_spotify_ids: function (callback) {
-				app.get('playmy').get_spotify_ids(tracks, function (err, results) {
+				app.get('playmy').get_spotify_ids(tracks, output.artist_list, function (err, results) {
 					output.spotify_ids = results; 
 					callback();
 				})
