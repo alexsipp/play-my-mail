@@ -22,7 +22,6 @@ var express = require('express')
   , versionator = require('versionator');
 
 //http.globalAgent.maxSockets = 10000;
-
 process.title = 'node play-my-mail app';
 
 app = express();
