@@ -48,7 +48,7 @@ app.post('/process', function (req, res) {
 			},
 			transform_text: function (callback) {
 
-				app.get('playmy').transform_text(data.input_data, 1, function (err, results) {
+				app.get('playmy').transform_text(data.input_data, 2, function (err, results) {
 					if (err) console.log(err);
 					data.words_list = results;
 					callback();
@@ -65,7 +65,7 @@ app.post('/process', function (req, res) {
 			generate_graph: function (callback) {
 				app.get('playmy').generate_ds3_graph_data(output, function (err, results) {
 					if (err) console.log(err);
-					console.log(results);
+					output = results;
 					callback();
 				})
 			}
