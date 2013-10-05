@@ -75,7 +75,7 @@ app.post('/process', function (req, res) {
 			res.render('word', {
 			    title: 'Home',
 			    page_nav: 'home',
-			    word: data.words_list
+			    words: data.words_list
 			});    
 		})
 		
