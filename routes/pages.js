@@ -15,11 +15,13 @@ app.get('/home', function (req, res) {
 	
 });
 
-app.post('/login', function (req, res) {
-	var email = req.body.username;
-	var password = req.body.password;
+app.post('/process', function (req, res) {
+	var email = req.body.email || null;
+	var password = req.body.password || null;
 
-	if (username || password) {
+	if (email && password) {
+
+		app.get('playmy').
 		app.get('playmy').delete_previous_files(function(err){
 			app.get('playmy').get_email_subjects(email, password, "INBOX", 1000, function(error, titles){
 
