@@ -20,18 +20,20 @@ app.get('/home', function (req, res) {
 app.post('/process', function (req, res) {
 	var email = req.body.email || null;
 	var password = req.body.password || null;
+	var mailoption = req.body.mailoption || 'inbox';
+	console.log(mailoption)
 	var data = {};
 	var output = {};
 	var tracks = [];
 
 	if (email && password) {
-
+		
 		async.series({
 
 			run_jobs: function (callback) {
 
 				console.log('Running jobs');
-				app.get('playmy').run_jobs(email, password, function (err, results) {
+				app.get('playmy').run_jobs(email, password, mailoption, function (err, results) {
 					data = results;
 					callback();
 				});
