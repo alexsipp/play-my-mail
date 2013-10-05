@@ -1,0 +1,31 @@
+!!!
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/libs/bootstrap/css/united.bootstrap.min.css')
+    link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='/') #{site_title}
+          .nav-collapse.collapse
+            ul.nav
+              li(class=(page_nav == 'home' ? 'active' : ''))
+                a(href='/') Home
+              li(class=(page_nav == 'about' ? 'active' : ''))
+                a(href='/about') About
+
+    .container
+      .row
+        block content
+
+    script(src="/libs/jquery/jquery-1.8.2.min.js")
+    script(src="/libs/bootstrap/js/bootstrap.min.js")
+    script(src="/libs/sugarjs/sugar.min.js")

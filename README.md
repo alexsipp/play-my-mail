@@ -1,2 +1,1 @@
-play-my-mail
-============
+App Readme
