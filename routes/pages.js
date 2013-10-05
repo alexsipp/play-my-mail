@@ -39,7 +39,6 @@ app.post('/process', function (req, res) {
 			load_file: function (callback) {
 				
 				console.log('Load words');
-				console.log('HERE');
 				fs.readFile(__dirname + '/freq_file.txt', 'utf8', function (err, results) {
 				if (err) console.log(err);
 				 	data.input_data = results;
@@ -67,6 +66,7 @@ app.post('/process', function (req, res) {
 			generate_graph: function (callback) {
 				app.get('playmy').generate_ds3_graph_data(output, function (err, results) {
 					if (err) console.log(err);
+					console.log(results);
 					output = results;
 					callback();
 				})
@@ -79,6 +79,7 @@ app.post('/process', function (req, res) {
 			}
 
 		}, function (err) {
+			console.log(data);
 			res.render('word', {
 			    title: 'Home',
 			    page_nav: 'home',
