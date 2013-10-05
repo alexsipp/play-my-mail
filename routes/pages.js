@@ -48,7 +48,7 @@ app.post('/process', function (req, res) {
 			},
 			transform_text: function (callback) {
 
-				app.get('playmy').transform_text(data.input_data, 2, function (err, results) {
+				app.get('playmy').transform_text(data.input_data, 1, function (err, results) {
 					if (err) console.log(err);
 					data.words_list = results;
 					callback();
@@ -70,13 +70,14 @@ app.post('/process', function (req, res) {
 					output = results;
 					callback();
 				})
-			},
+			}/*,
+
 			get_spotify_ids: function (callback) {
 				app.get('playmy').get_spotify_ids(tracks, function (err, results) {
 					output.spotify_ids = results; 
 					callback();
 				})
-			}
+			}*/
 
 		}, function (err) {
 			console.log(data);
@@ -84,7 +85,7 @@ app.post('/process', function (req, res) {
 			    title: 'Home',
 			    page_nav: 'home',
 			    words: data.words_list,
-			    playlist: output.spotify_ids,
+			    //playlist: output.spotify_ids,
 			    graph_nodes: output.nodes,
 			    graph_links: output.links
 			});    
