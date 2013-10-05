@@ -2,5 +2,8 @@ extends layout
 
 block content
         .hero-unit
-          h1= title
-          p ..start coding now!
+          form.form.form-signin(method='POST', action='/login')
+            h2.form-signin-heading Ready to play your mail....
+            input.input-block-level(type='text', name='email', id='email', placeholder='Email...')
+            input.input-block-level(type='password', name='password', id='password', placeholder='Password...')
+            input.btn.btn-large.btn-success(type='submit', value='Go for it...')
