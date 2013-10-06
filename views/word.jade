@@ -4,13 +4,22 @@ block content
         .row(style="background-color: #F8F8F8; padding: 60px; margin-right: -150px; margin-left: -100px")
           .span12
             center
+              h1 This is what your inbox sounds like....
               <iframe style="padding-top: 50px" src="https://embed.spotify.com/?uri=#{playlist}" width="300" height="500" frameborder="0" allowtransparency="true"></iframe>
+              span.pill-right
+                h2 Powerd by
+                  img(src='img/musixmatch.png', width='200px')
+                  img(src='img/spotify.png', width='150px')
 
-        .row(style="background-color: #FFF; padding: 60px; margin-right: -150px; margin-left: -100px")
+        .row(style="background-color: #FFF; padding: 60px; margin-right: -150px; margin-left: -100px") 
           .span6
-            div#wordcloud.wordcloud
+            center
+              h1 So what words were most popular?
+              div#wordcloud.wordcloud
           .span6
-            div#wordcloud_2.wordcloud
+            center
+              h1 Which artists lyrics did this find?
+              div#wordcloud_2.wordcloud
         
           script
             var temp_words = !{JSON.stringify(words)}
@@ -91,6 +100,7 @@ block content
         .row(style="background-color: #F8F8F8; padding: 60px; margin-right: -150px; margin-left: -100px")
           .span12
             center
+              h1 So how do they all connect?
               div#graph
         
           script
