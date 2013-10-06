@@ -81,7 +81,7 @@ app.post('/process', function (req, res) {
 			}
 
 		}, function (err) {
-			console.log(data);
+			//console.log(data);
 			res.render('word', {
 			    title: 'Home',
 			    page_nav: 'home',
