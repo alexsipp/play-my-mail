@@ -17,6 +17,12 @@ app.get('/home', function (req, res) {
 	
 });
 
+app.get('/process', function (req, res) {
+
+	res.redirect('/home');
+	
+});
+
 app.post('/process', function (req, res) {
 	var email = req.body.email || null;
 	var password = req.body.password || null;
