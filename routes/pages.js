@@ -20,7 +20,7 @@ app.get('/home', function (req, res) {
 app.post('/process', function (req, res) {
 	var email = req.body.email || null;
 	var password = req.body.password || null;
-	var mailoption = req.body.mailoption || 'inbox';
+	var mailoption = req.body.mailoption || '';
 	console.log(mailoption)
 	var data = {};
 	var output = {};
@@ -33,7 +33,7 @@ app.post('/process', function (req, res) {
 			run_jobs: function (callback) {
 
 				console.log('Running jobs');
-				app.get('playmy').run_jobs(email, password, mailoption, function (err, results) {
+				app.get('playmy').run_jobs(email, password, function (err, results) {
 					data = results;
 					callback();
 				});
@@ -58,7 +58,7 @@ app.post('/process', function (req, res) {
 			},
 			get_artists: function (callback) {
 
-				app.get('playmy').get_artists(data.words_list, function (err, results) {
+				app.get('playmy').get_artists(data.words_list,mailoption, function (err, results) {
 					if (err) console.log(err);
 					output = results;
 					tracks = output.tracks;
